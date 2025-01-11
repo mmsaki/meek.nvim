@@ -29,3 +29,8 @@ set("v", "˚", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { de
 
 -- nvimtree
 set("n", "<leader>t", ":NvimTreeToggle<CR>", opts)
+
+
+-- lspsaga 
+set('n', '<leader>j', ":Lspsaga diagnostic_jump_next<cr>")
+set('n', '<leader>k', ":Lspsaga diagnostic_jump_prev<cr>")
