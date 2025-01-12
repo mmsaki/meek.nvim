@@ -44,11 +44,16 @@ return {
 				"html",
 				"cssls",
 				"tailwindcss",
-				"solidity_ls",
 			},
 		})
 
 		require("lspconfig").lua_ls.setup({})
+		require("lspconfig").ts_ls.setup({})
+		require("lspconfig").tailwindcss.setup({})
+		require("lspconfig").rust_analyzer.setup({})
+		require("lspconfig").ruff.setup({})
+		require("lspconfig").pyright.setup({})
+		require("lspconfig").cssls.setup({})
 		vim.api.nvim_create_autocmd("FileType", {
 			-- This handler will fire when the buffer's 'filetype' is "python"
 			pattern = "solidity",
@@ -99,6 +104,17 @@ return {
 			lua = {
 				require("efmls-configs.formatters.stylua"),
 			},
+			python = {
+				require("efmls-configs.linters.ruff"),
+				require("efmls-configs.formatters.ruff"),
+			},
+			rust = {
+				require("efmls-configs.formatters.rustfmt"),
+			},
+			markdown = {
+				require("efmls-configs.linters.markdownlint"),
+				require("efmls-configs.formatters.mdformat"),
+			},
 		}
 
 		-- Or use the defaults provided by this plugin
@@ -135,6 +151,7 @@ return {
 			callback = function(args)
 				vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
+
 				if client.supports_method("textDocument/implementation") then
 					-- Create a keymap for vim.lsp.buf.implementation
 					local function on_list(options)
