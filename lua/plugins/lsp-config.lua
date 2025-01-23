@@ -5,6 +5,7 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		"neovim/nvim-lspconfig",
 		{ "folke/neoconf.nvim" },
+		"saghen/blink.cmp",
 		{
 			"creativenull/efmls-configs-nvim",
 			version = "v1.x.x", -- version is optional, but recommended
@@ -44,53 +45,59 @@ return {
 				"html",
 				"cssls",
 				"tailwindcss",
+				"solidity_ls",
+				"solidity_ls_nomicfoundation",
 			},
 		})
+		local blink = require("blink.cmp")
+		local capabilities = blink.get_lsp_capabilities()
+		require("lspconfig").lua_ls.setup({ capabilities = capabilities })
+		require("lspconfig").ts_ls.setup({ capabilities = capabilities })
+		require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
+		require("lspconfig").rust_analyzer.setup({ capabilities = capabilities })
+		require("lspconfig").ruff.setup({ capabilities = capabilities })
+		require("lspconfig").pyright.setup({ capabilities = capabilities })
+		require("lspconfig").cssls.setup({ capabilities = capabilities })
+		-- require("lspconfig").solidity_ls.setup({})
+		require("lspconfig").solidity_ls_nomicfoundation.setup({})
 
-		require("lspconfig").lua_ls.setup({})
-		require("lspconfig").ts_ls.setup({})
-		require("lspconfig").tailwindcss.setup({})
-		require("lspconfig").rust_analyzer.setup({})
-		require("lspconfig").ruff.setup({})
-		require("lspconfig").pyright.setup({})
-		require("lspconfig").cssls.setup({})
-		vim.api.nvim_create_autocmd("FileType", {
-			-- This handler will fire when the buffer's 'filetype' is "python"
-			pattern = "solidity",
-			callback = function(args)
-				vim.lsp.start({
-					name = "@msaki solidity lsp server",
-					-- cmd = { "vscode-solidity-server", "--stdio" },
-					cmd = { "nc", "localhost", "65432" }, -- NOTE: should be started manually
-
-					-- Set the "root directory" to the parent directory of the file in the
-					-- current buffer (`args.buf`) that contains either a "setup.py" or a
-					-- "pyproject.toml" file. Files that share a root directory will reuse
-					-- the connection to the same LSP server.
-					root_dir = vim.fs.root(args.buf, { "foundry.toml", ".git" }),
-					settings = {
-						wake = {
-							configuration = {
-								use_toml_if_present = true,
-								toml_path = "wake.toml",
-							},
-							lsp = {
-								compilation_delay = 0,
-								find_references = {
-									include_declarations = true,
-								},
-								code_lens = {
-									enable = false,
-								},
-								detectors = {
-									only = {},
-								},
-							},
-						},
-					},
-				})
-			end,
-		})
+		-- vim.api.nvim_create_autocmd("FileType", {
+		-- 	-- This handler will fire when the buffer's 'filetype' is "python"
+		-- 	pattern = "solidity",
+		-- 	callback = function(args)
+		-- 		vim.lsp.start({
+		-- 			name = "@msaki Wake solidity lsp server",
+		-- 			-- cmd = { "vscode-solidity-server", "--stdio" },
+		-- 			-- cmd = { "nc", "localhost", "65432" }, -- NOTE: should be started manually
+		-- 			cmd = { "solc", "--lsp", "--base-path", ".", "--include-paths", "./lib/" },
+		-- 			-- Set the "root directory" to the parent directory of the file in the
+		-- 			-- current buffer (`args.buf`) that contains either a "setup.py" or a
+		-- 			-- "pyproject.toml" file. Files that share a root directory will reuse
+		-- 			-- the connection to the same LSP server.
+		-- 			root_dir = vim.fs.root(args.buf, { "foundry.toml", ".git" }),
+		-- 			settings = {
+		-- 				wake = {
+		-- 					configuration = {
+		-- 						use_toml_if_present = true,
+		-- 						toml_path = "wake.toml",
+		-- 					},
+		-- 					lsp = {
+		-- 						compilation_delay = 0,
+		-- 						find_references = {
+		-- 							include_declarations = true,
+		-- 						},
+		-- 						code_lens = {
+		-- 							enable = false,
+		-- 						},
+		-- 						detectors = {
+		-- 							enable = true,
+		-- 						},
+		-- 					},
+		-- 				},
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- })
 		-- Register linters and formatters per language
 		local languages = {
 			typescript = {
@@ -152,7 +159,7 @@ return {
 				vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-				if client.supports_method("textDocument/implementation") then
+				if client.supports_method("textDocument/implementation", args.buf) then
 					-- Create a keymap for vim.lsp.buf.implementation
 					local function on_list(options)
 						vim.fn.setqflist({}, " ", options)
@@ -162,12 +169,12 @@ return {
 					vim.lsp.buf.implementation({ on_list = on_list })
 				end
 
-				if client.supports_method("textDocument/completion") then
+				if client.supports_method("textDocument/completion", args.buf) then
 					-- Enable auto-completion
 					vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
 				end
 
-				if client.supports_method("textDocument/formatting") then
+				if client.supports_method("textDocument/formatting", args.buf) then
 					-- Format the current buffer on save
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = args.buf,

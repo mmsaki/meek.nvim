@@ -1,0 +1,9 @@
+{
+    "diagnostics.globals": [
+        "require"
+    ],
+    "diagnostics.disable": [
+        "need-check-nil",
+        "missing-fields"
+    ]
+}
