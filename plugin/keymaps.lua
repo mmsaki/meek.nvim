@@ -1,6 +1,10 @@
 local set = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+-- Got to methods remapping
+set("n", "]m", "]mzz")
+set("n", "[m", "[mzz")
+
 -- navigating panes
 set("n", "<C-h>", "<C-w><C-h>", { desc = "Move to left window" })
 set("n", "<C-l>", "<C-w><C-l>", { desc = "Move to right window" })
