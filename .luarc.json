@@ -4,6 +4,7 @@
     ],
     "diagnostics.disable": [
         "need-check-nil",
-        "missing-fields"
+        "missing-fields",
+        "missing-parameter"
     ]
 }
