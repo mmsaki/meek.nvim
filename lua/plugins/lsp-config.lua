@@ -106,7 +106,7 @@ return {
 			},
 			solidity = {
 				require("efmls-configs.linters.solhint"),
-				require("efmls-configs.formatters.prettier"),
+				require("efmls-configs.formatters.forge_fmt"),
 			},
 			lua = {
 				require("efmls-configs.formatters.stylua"),
