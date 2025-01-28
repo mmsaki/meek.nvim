@@ -1,0 +1,5 @@
+[compiler.solc]
+include_paths = ["node_modules", "src"]
+remappings = [
+  "forge-std/=lib/forge-std/src/"
+]
