@@ -16,9 +16,9 @@ set("v", "<", "<gv", { desc = "Indent backwards" })
 set("v", ">", ">gv", { desc = "Indent forwards" })
 
 -- save file
-set("n", "<leader>w", ":w<CR>", vim.list_extend({ desc = "Save file" }, opts))
+set("n", "<leader>w", ":w<CR>", { desc = "Save file", silent = true })
 
-set("n", "<leader>q", ":q<CR>", vim.list_extend({ desc = "Quit" }, opts))
+set("n", "<leader>q", ":q<CR>", opts)
 
 -- buffer navigation
 set("n", "<leader><leader>h", ":bn<CR>", { desc = "Move to next buffer" })
