@@ -26,12 +26,12 @@ set("n", "<leader><leader>l", ":bp<CR>", { desc = "Move to previous buffer" })
 set("n", "<leader>d", ":bd<CR>", { desc = "Delete buffer" })
 
 -- Move Lines
-set("n", "<D>j", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
-set("n", "<D>k", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
-set("i", "<D>j", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-set("i", "<D>k", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-set("v", "<D>j", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
-set("v", "<D>k", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
+set("n", "<D-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+set("n", "<D-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+set("i", "<D-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+set("i", "<D-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+set("v", "<D-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+set("v", "<D-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
 -- nvimtree
 set("n", "<leader>t", ":NvimTreeToggle<CR>", opts)
