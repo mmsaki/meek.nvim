@@ -100,7 +100,19 @@ return {
 		-- })
 		-- Register linters and formatters per language
 		local languages = {
+			javascript = {
+				require("efmls-configs.linters.eslint"),
+				require("efmls-configs.formatters.prettier"),
+			},
+			javascriptreact = {
+				require("efmls-configs.linters.eslint"),
+				require("efmls-configs.formatters.prettier"),
+			},
 			typescript = {
+				require("efmls-configs.linters.eslint"),
+				require("efmls-configs.formatters.prettier"),
+			},
+			typescriptreact = {
 				require("efmls-configs.linters.eslint"),
 				require("efmls-configs.formatters.prettier"),
 			},
