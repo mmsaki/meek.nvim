@@ -16,9 +16,10 @@ set("v", "<", "<gv", { desc = "Indent backwards" })
 set("v", ">", ">gv", { desc = "Indent forwards" })
 
 -- save file
-set("n", "<leader>w", ":w<CR>", { desc = "Save file", silent = true })
-
+set("n", "<D-s>", ":w<CR>", { desc = "Save file", silent = true })
+set("n", "<leader>s", ":w<CR>", { desc = "Save file", silent = true })
 set("n", "<leader>q", ":q<CR>", opts)
+set("n", "<leader>x", ":so<CR>", opts)
 
 -- buffer navigation
 set("n", "<leader><leader>h", ":bn<CR>", { desc = "Move to next buffer" })
@@ -41,4 +42,4 @@ set("n", "<leader>j", ":Lspsaga diagnostic_jump_next<cr>")
 set("n", "<leader>k", ":Lspsaga diagnostic_jump_prev<cr>")
 
 -- Terminal escape
-set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit Terminal mode" })
+set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit Terminal mode" })
