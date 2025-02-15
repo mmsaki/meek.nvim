@@ -16,6 +16,7 @@ return {
 				"rust",
 				"python",
 				"markdown",
+				"json",
 			},
 			auto_install = true,
 			highlight = { enable = true },
