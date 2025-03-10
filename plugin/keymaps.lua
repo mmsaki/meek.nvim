@@ -17,6 +17,7 @@ set("v", ">", ">gv", { desc = "Indent forwards" })
 
 -- save file
 set("n", "<D-s>", ":w<CR>", { desc = "Save file", silent = true })
+set("n", "<leader>w", ":w<CR>", { desc = "Save file", silent = true })
 set("n", "<leader>s", ":w<CR>", { desc = "Save file", silent = true })
 set("n", "<leader>q", ":q<CR>", opts)
 set("n", "<leader>x", ":so<CR>", opts)
