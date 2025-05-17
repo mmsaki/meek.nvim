@@ -45,28 +45,40 @@ return {
         "html",
         "cssls",
         "tailwindcss",
-        "solidity_ls",
         "solidity_ls_nomicfoundation",
+        "biome",
+        "dockerls",
       },
     })
+    local lspconfig = require("lspconfig")
     local blink = require("blink.cmp")
     local capabilities = blink.get_lsp_capabilities()
-    require("lspconfig").lua_ls.setup({ capabilities = capabilities })
-    require("lspconfig").ts_ls.setup({ capabilities = capabilities })
-    require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
-    require("lspconfig").rust_analyzer.setup({ capabilities = capabilities })
-    require("lspconfig").ruff.setup({ capabilities = capabilities })
-    require("lspconfig").pyright.setup({ capabilities = capabilities })
-    require("lspconfig").cssls.setup({ capabilities = capabilities })
-    -- require("lspconfig").solidity_ls.setup({})
-    require("lspconfig").solidity_ls_nomicfoundation.setup({})
+    lspconfig.lua_ls.setup({ capabilities = capabilities })
+    lspconfig.ts_ls.setup({ capabilities = capabilities })
+    lspconfig.tailwindcss.setup({ capabilities = capabilities })
+    lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+    lspconfig.ruff.setup({ capabilities = capabilities })
+    lspconfig.pyright.setup({ capabilities = capabilities })
+    lspconfig.cssls.setup({ capabilities = capabilities })
+    lspconfig.biome.setup({ capabilities = capabilities })
+    lspconfig.dockerls.setup({ capabilities = capabilities })
+    lspconfig.solidity_ls_nomicfoundation.setup({ capabilities = capabilities })
+    lspconfig.sourcekit.setup({
+      capabilities = {
+        workspace = {
+          didChangeWatchedFiles = {
+            dynamicRegistration = true,
+          },
+        },
+      },
+    })
 
     -- vim.api.nvim_create_autocmd("FileType", {
     -- 	-- This handler will fire when the buffer's 'filetype' is "python"
     -- 	pattern = "solidity",
     -- 	callback = function(args)
     -- 		vim.lsp.start({
-    -- 			name = "@msaki Wake solidity lsp server",
+    -- 			name = "Wake solidity lsp server",
     -- 			cmd = { "nc", "localhost", "65432" }, -- NOTE: should be started manually
     -- 			-- cmd = { "solc", "--lsp", "--base-path", ".", "--include-paths", "./lib/" },
     -- 			-- Set the "root directory" to the parent directory of the file in the
@@ -101,19 +113,19 @@ return {
     local languages = {
       javascript = {
         require("efmls-configs.linters.eslint"),
-        require("efmls-configs.formatters.prettier"),
+        require("efmls-configs.formatters.biome"),
       },
       javascriptreact = {
         require("efmls-configs.linters.eslint"),
-        require("efmls-configs.formatters.prettier"),
+        require("efmls-configs.formatters.biome"),
       },
       typescript = {
         require("efmls-configs.linters.eslint"),
-        require("efmls-configs.formatters.prettier"),
+        require("efmls-configs.formatters.biome"),
       },
       typescriptreact = {
         require("efmls-configs.linters.eslint"),
-        require("efmls-configs.formatters.prettier"),
+        require("efmls-configs.formatters.biome"),
       },
       solidity = {
         require("efmls-configs.linters.solhint"),
@@ -128,6 +140,9 @@ return {
       },
       rust = {
         require("efmls-configs.formatters.rustfmt"),
+      },
+      dockerfile = {
+        require("efmls-configs.linters.hadolint"),
       },
       json = {
         require("efmls-configs.linters.jq"),
@@ -160,11 +175,11 @@ return {
       },
     }
 
-    require("lspconfig").efm.setup(vim.tbl_extend("force", efmls_config, {
+    lspconfig.efm.setup(vim.tbl_extend("force", efmls_config, {
       -- Pass your cutom config below like on_attach and capabilities
       --
-      -- on_attach = on_attach,
-      -- capabilities = capabilities,
+      -- on_attach = on_attarh,
+      capabilities = capabilities,
     }))
     -- on lsp attach
     local vim_fmt_autogroup = vim.api.nvim_create_augroup("LspFormattingGroup", { clear = false })
