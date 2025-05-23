@@ -4,55 +4,78 @@ Quick Neovim setup config.
 
 ## Plugins
 
-1. [folke/lazy.nvim](https://github.com/folke/lazy.nvim) - Plugin manager for nvim
-2. [catppuccin/nvim](https://github.com/catppuccin/nvim) - Coloerscheme
-3. [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy finder for files and content within them
-4. [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Handles installing, updating, and removing parsers for different languages
-5. [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) - Plugin that manages LSP sserver, DAP server, Linters and Formatters
+1. autocompletion.lua
+1. autoformat.lua
+1. autopairs.lua
+1. blink.lua
+1. catpuccin.lua
+1. dadbod.lua
+1. debug.lua
+1. fugitive.lua
+1. git-signs.lua
+1. harpoon.lua
+1. illumunate.lua
+1. image.lua
+1. jupyter.lua
+1. lean.lua
+1. lsp-config.lua
+1. lspsaga.lua
+1. lualine.lua
+1. markdown.lua
+1. nvim-tree.lua
+1. snippets.lua
+1. telescope.lua
+1. todo.lua
+1. transparent.lua
+1. treesitter.lua
+1. which-key.lua
 
-## Solidity specific setup
+## LSP, Linters and Formatters
 
-### Formatter
+- Using efm-config
 
-1. Install and set up [prettierrc solidity plugin](https://www.npmjs.com/package/prettier-plugin-solidity#configuration-file)
-   ```sh
-   # create npm inside project directory
-   npm init -y;
-   # install prettier solidity plugin
-   npm i --save-dev prettier-plugin-solidity
-   ```
-   > [!TIP]
-   >
-   > ## Create a `.prettierrc` file in project direcory
-   >
-   > Example:
-   >
-   > ```json
-   > // .prettierrc
-   > {
-   >   "plugins": ["prettier-plugin-solidity"],
-   >   "overrides": [
-   >     {
-   >       "files": "*.sol",
-   >       "options": {
-   >         "parser": "solidity-parse",
-   >         "printWidth": 80,
-   >         "tabWidth": 4,
-   >         "useTabs": false,
-   >         "singleQuote": true,
-   >         "bracketSpacing": true,
-   >       }
-   >     }
-   >   ]
-   > }
-   > ```
-
-## Keymaps
-
-- File Explorer
-  - leader-t
-- AST treesitter selection
-  - gnn - 'n' select node
-  - grn - 'v' expand selection backwards
-  - grm - 'v' expand selection inwards
-  - grc - 'v' select tree scope
+```lua
+local languages = {
+  javascript = {
+    require("efmls-configs.linters.eslint"),
+    require("efmls-configs.formatters.prettier_d"),
+  },
+  javascriptreact = {
+    require("efmls-configs.linters.eslint"),
+    require("efmls-configs.formatters.prettier_d"),
+  },
+  typescript = {
+    require("efmls-configs.linters.eslint"),
+    require("efmls-configs.formatters.prettier_d"),
+  },
+  typescriptreact = {
+    require("efmls-configs.linters.eslint"),
+    require("efmls-configs.formatters.prettier_d"),
+  },
+  solidity = {
+    require("efmls-configs.linters.solhint"),
+    require("efmls-configs.formatters.forge_fmt"),
+  },
+  lua = {
+    require("efmls-configs.formatters.stylua"),
+  },
+  python = {
+    require("efmls-configs.linters.ruff"),
+    require("efmls-configs.formatters.ruff"),
+  },
+  rust = {
+    require("efmls-configs.formatters.rustfmt"),
+  },
+  dockerfile = {
+    require("efmls-configs.linters.hadolint"),
+  },
+  json = {
+    require("efmls-configs.linters.jq"),
+    require("efmls-configs.formatters.jq"),
+  },
+  markdown = {
+    require("efmls-configs.linters.markdownlint"),
+    require("efmls-configs.formatters.mdformat"),
+  },
+}
+```
