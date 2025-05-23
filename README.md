@@ -4,31 +4,31 @@ Quick Neovim setup config.
 
 ## Plugins
 
-1. autocompletion.lua
-1. autoformat.lua
-1. autopairs.lua
-1. blink.lua
-1. catpuccin.lua
-1. dadbod.lua
-1. debug.lua
-1. fugitive.lua
-1. git-signs.lua
-1. harpoon.lua
-1. illumunate.lua
-1. image.lua
-1. jupyter.lua
-1. lean.lua
-1. lsp-config.lua
-1. lspsaga.lua
-1. lualine.lua
-1. markdown.lua
-1. nvim-tree.lua
-1. snippets.lua
-1. telescope.lua
-1. todo.lua
-1. transparent.lua
-1. treesitter.lua
-1. which-key.lua
+01. autocompletion - 'hrsh7th/nvim-cmp'
+02. autoformat - 'stevearc/conform.nvim'
+03. autopairs - 'windwp/nvim-autopairs'
+04. blink - "saghen/blink.cmp"
+05. colorscheme - "catppuccin/nvim"
+06. dadbod - "tpope/vim-dadbod"
+07. debug - 'mfussenegger/nvim-dap'
+08. fugitive - "tpope/vim-fugitive"
+09. git-signs - "lewis6991/gitsigns.nvim"
+10. harpoon - "ThePrimeagen/harpoon"
+11. illumunate - "rockyzhang24/vim-illuminate"
+12. image - "3rd/image.nvim"
+13. jupyter - "benlubas/molten-nvim"
+14. lean - "Julian/lean.nvim"
+15. lsp-config - "williamboman/mason-lspconfig.nvim"
+16. lspsaga - "glepnir/lspsaga.nvim"
+17. lualine - 'nvim-lualine/lualine.nvim'
+18. markdown - 'MeanderingProgrammer/render-markdown.nvim'
+19. nvim-tree - "nvim-tree/nvim-tree.lua"
+20. snippets - "L3MON4D3/LuaSnip"
+21. telescope - "nvim-telescope/telescope.nvim"
+22. todo - 'folke/todo-comments.nvim'
+23. transparent - "xiyaowong/transparent.nvim"
+24. treesitter - "nvim-treesitter/nvim-treesitter"
+25. which-key - "folke/which-key.nvim"
 
 ## LSP, Linters and Formatters
 
@@ -37,19 +37,19 @@ Quick Neovim setup config.
 ```lua
 local languages = {
   javascript = {
-    require("efmls-configs.linters.eslint"),
+    require("efmls-configs.linters.eslint_d"),
     require("efmls-configs.formatters.prettier_d"),
   },
   javascriptreact = {
-    require("efmls-configs.linters.eslint"),
+    require("efmls-configs.linters.eslint_d"),
     require("efmls-configs.formatters.prettier_d"),
   },
   typescript = {
-    require("efmls-configs.linters.eslint"),
+    require("efmls-configs.linters.eslint_d"),
     require("efmls-configs.formatters.prettier_d"),
   },
   typescriptreact = {
-    require("efmls-configs.linters.eslint"),
+    require("efmls-configs.linters.eslint_d"),
     require("efmls-configs.formatters.prettier_d"),
   },
   solidity = {
