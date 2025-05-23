@@ -5,7 +5,7 @@ return {
     "neovim/nvim-lspconfig",
     "nvim-lua/plenary.nvim",
     "hrsh7th/nvim-cmp",
-    "nvim-telescope/telescope.nvim", 
+    "nvim-telescope/telescope.nvim",
     "andymass/vim-matchup",
     "andrewradev/switch.vim",
   },
@@ -38,7 +38,7 @@ return {
         indicators = "auto",
       },
       progress_bars = {
-        enable = true, 
+        enable = true,
         character = "│",
         priority = 10,
       },

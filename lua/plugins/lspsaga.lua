@@ -3,7 +3,6 @@ return {
 	lazy = false,
 	config = function()
 		local lspsaga = require("lspsaga")
-
 		lspsaga.setup({
 			move_in_saga = { prev = "<C-k>", next = "<C-j>" },
 			finder_action_keys = {
