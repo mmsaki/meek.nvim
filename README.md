@@ -1,6 +1,6 @@
-# Nvim Setup
+# Nvim config
 
-Quick Neovim setup config.
+My Neovim config.
 
 ## Requirements
 

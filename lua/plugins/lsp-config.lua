@@ -5,7 +5,6 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "neovim/nvim-lspconfig",
     { "folke/neoconf.nvim" },
-    "saghen/blink.cmp",
     {
       "creativenull/efmls-configs-nvim",
       version = "v1.x.x",
@@ -46,11 +45,11 @@ return {
         "solidity_ls_nomicfoundation",
         "biome",
         "dockerls",
+        "remark_ls",
       },
     })
     local lspconfig = require("lspconfig")
-    local blink = require("blink.cmp")
-    local capabilities = blink.get_lsp_capabilities()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
     lspconfig.lua_ls.setup({ capabilities = capabilities })
     lspconfig.ts_ls.setup({ capabilities = capabilities })
     lspconfig.tailwindcss.setup({ capabilities = capabilities })
@@ -58,7 +57,9 @@ return {
     lspconfig.ruff.setup({ capabilities = capabilities })
     lspconfig.pyright.setup({ capabilities = capabilities })
     lspconfig.cssls.setup({ capabilities = capabilities })
+    lspconfig.html.setup({ capabilities = capabilities })
     lspconfig.biome.setup({ capabilities = capabilities })
+    lspconfig.remark_ls.setup({ capabilities = capabilities })
     lspconfig.dockerls.setup({ capabilities = capabilities })
     lspconfig.solidity_ls_nomicfoundation.setup({ capabilities = capabilities })
     lspconfig.sourcekit.setup({
