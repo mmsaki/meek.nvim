@@ -19,8 +19,7 @@ return {
         },
       },
       ft = {
-        nomodifiable = {
-        },
+        nomodifiable = {},
       },
       abbreviations = {
         enable = true,
