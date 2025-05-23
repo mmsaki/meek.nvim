@@ -45,7 +45,6 @@ return {
         "solidity_ls_nomicfoundation",
         "biome",
         "dockerls",
-        "remark_ls",
       },
     })
     local lspconfig = require("lspconfig")
@@ -59,7 +58,6 @@ return {
     lspconfig.cssls.setup({ capabilities = capabilities })
     lspconfig.html.setup({ capabilities = capabilities })
     lspconfig.biome.setup({ capabilities = capabilities })
-    lspconfig.remark_ls.setup({ capabilities = capabilities })
     lspconfig.dockerls.setup({ capabilities = capabilities })
     lspconfig.solidity_ls_nomicfoundation.setup({ capabilities = capabilities })
     lspconfig.sourcekit.setup({

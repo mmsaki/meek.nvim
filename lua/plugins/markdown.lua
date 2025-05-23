@@ -2,6 +2,12 @@ return {
   "MeanderingProgrammer/render-markdown.nvim",
   dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
   config = function()
+    local cmp = require("cmp")
+    cmp.setup({
+      sources = cmp.config.sources({
+        { name = "render-markdown" },
+      }),
+    })
     require("render-markdown").setup({
       enabled = true,
       render_modes = { "n", "c", "t" },
