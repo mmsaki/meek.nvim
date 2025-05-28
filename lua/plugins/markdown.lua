@@ -3,9 +3,13 @@ return {
   dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
   config = function()
     local cmp = require("cmp")
-    cmp.setup({
+    cmp.setup.filetype("markdown", {
       sources = cmp.config.sources({
         { name = "render-markdown" },
+      }, {
+        { name = "path" },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
       }),
     })
     require("render-markdown").setup({
