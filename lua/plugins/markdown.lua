@@ -50,8 +50,6 @@ return {
       },
       anti_conceal = {
         enabled = true,
-        --   head_icon, head_background, head_border, code_language, code_background, code_border,
-        --   dash, bullet, check_icon, check_scope, quote, table_border, callout, link, sign
         ignore = {
           code_background = true,
           sign = true,
@@ -99,9 +97,9 @@ return {
         setext = false,
         sign = true,
         icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
-        -- | right   | '#'s are concealed and icon is appended to right side                          |
-        -- | inline  | '#'s are concealed and icon is inlined on left side                            |
-        -- | overlay | icon is left padded with spaces and inserted on left hiding any additional '#' |
+        -- | right   |
+        -- | inline  |
+        -- | overlay |
         position = "right",
         signs = { "󰫎 " },
         -- | block | width of the heading text |
